@@ -8,6 +8,11 @@ var wordDisplay = "";
 var guessIndices = [];
 var remainingGuesses = 5; // Consider making a ratio here. E.g. if the selected word is 12 letters long, maybe have more guesses.
 
+// Function for replacing display word with guessed input.
+function replaceAt(string, index, replace) {
+    return string.substring(0, index) + replace + string.substring(index + 1);
+  }
+
 // 1. Listen for Key Events - Game Start.
 function gameStart() {
 
@@ -24,7 +29,6 @@ function gameStart() {
         wordDisplay += "_ ";
     }
     wordDisplay = wordDisplay.slice(0, -1); //remove unnecessary space from the end of the word after generating
-    console.log(wordDisplay)
 
     // *** 5. Write the blank word to the DOM.
     document.getElementById("wordDisplayID").innerHTML = wordDisplay;
@@ -52,11 +56,21 @@ function gameStart() {
                     remainingGuesses -= 1;
                 }
                 else {
-                    alert("You have already guessed " + key + ". Please pick another letter.")
+                    alert("You have already guessed the letter " + key + ". Please pick another letter.")
                 } 
+            }
+            // 8. If the guess was in the word, replace the letter(s) on the screen.
+            if (guessIndices.length > 0) { 
+                for (let i = 0; i < guessIndices.length; i++) {
+                    wordDisplay = replaceAt(wordDisplay, (2*guessIndices[i]), key); // replace at 2*guessIndices due to spaces
+                }
+                // Then update the word on the screen.
+                document.getElementById("wordDisplayID").innerHTML = wordDisplay;
             }
             console.log(missedGuesses)
             console.log(remainingGuesses)
+
+            
         }
     }
 
