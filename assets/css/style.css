@@ -1,0 +1,10 @@
+* {
+    font-family: 'Permanent Marker', cursive;
+}
+
+body {
+    background-image: url(../images/background_with_cowboy.png);
+    background-repeat: no-repeat;
+    background-size: 1900px 950px;
+    margin: 0;
+}
