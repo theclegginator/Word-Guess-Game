@@ -1,14 +1,15 @@
 * {
     font-family: 'Permanent Marker', cursive;
+    color: white;
 }
 
 body {
-    background-image: url(../images/background_with_cowboy.png);
+    background-image: url(../images/background_flipped.png);
     background-repeat: no-repeat;
-    background-size: 1900px 950px;
+    background-size: 1500px 800px;
     margin: 0;
 }
 
 p {
-    margin: 5px;
+    margin: 10px;
 }
