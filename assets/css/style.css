@@ -8,3 +8,7 @@ body {
     background-size: 1900px 950px;
     margin: 0;
 }
+
+p {
+    margin: 5px;
+}
