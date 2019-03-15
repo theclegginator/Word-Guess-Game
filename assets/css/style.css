@@ -4,10 +4,10 @@
 }
 
 body {
-    background-image: url(../images/background_flipped.png);
-    background-repeat: no-repeat;
-    background-size: 1500px 800px;
-    margin: 0;
+    background-color: blue;
+    background-image: url(../images/background_with_cowboy.png);
+    background-size: auto;
+    background-repeat: repeat-x;
 }
 
 p {
