@@ -21,7 +21,7 @@ var missedGuesses = [];
 
 // Function for starting the game (or starting a new word)
 function gameStart() {
-    // *** 3. Randomly select a word from the list of words in your words array. 
+    // *** 3. Randomly select a word from the list of words in your words array.
     word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     console.log(word + " was the word selected from the array.")
     remainingGuesses = 5;
@@ -48,7 +48,7 @@ document.onkeyup = function(event) {
     key = key.toUpperCase();
     guessIndices = []; // clear out the guess indices every time a key is pressed.
     
-    if (validKeys.includes(key)) {
+    if (validKeys.includes(key) && wordsArray.length !== 0) {
         var playerGuess = key;
 
         // *** 7. Run a loop going through the word that has been selected to see if the users guess matches any of the letters
@@ -112,7 +112,4 @@ document.onkeyup = function(event) {
         }
     }
 }
-
-// NOTE: do something special if they got all the words from wordsArray.
-// NOTE: I think I need to add a sound to play when they get the correct word or something.
 // NOTE: May want to add a pause somehow between getting the right word and starting the next word. You don't get to see the full word.
