@@ -2,6 +2,7 @@
 var wordsArray = ["PARTNER", "CATAWAMPUS", "HORSE", "LASSO", "SHOOTOUT", "SPURS", "COWBOY", "ARMADILLO", "TUMBLEWEED", "LOCAMOTIVE", "SALOON", "WAGON", "SADDLE"];
 var validKeys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var missedGuesses = [];
+var pause = true;
 var wins = 0;
 var losses = 0;
 var wordDisplay = "";
@@ -9,26 +10,32 @@ var prevWord = "";
 var guessIndices = [];
 var remainingGuesses = 5; // Consider making a ratio here. E.g. if the selected word is 12 letters long, maybe have more guesses.
 
-// Function for replacing display word indices with guessed input.
-function replaceAt(string, index, replace) {
-    return string.substring(0, index) + replace + string.substring(index + 1);
-  }
-
 // 2. Write the wins and losses etc. to the DOM and initialize the game.
 document.getElementById("winsID").innerHTML = wins;
 document.getElementById("lossesID").innerHTML = losses;
 document.getElementById("remainingGuessesID").innerHTML = remainingGuesses;
 var missedGuesses = [];
 
+// Function for replacing display word indices with guessed input.
+function replaceAt(string, index, replace) {
+    return string.substring(0, index) + replace + string.substring(index + 1);
+  }
+
 // Function for starting the game (or starting a new word)
 function gameStart() {
+    //animate color back to white
+    $(function(){
+        $("h1").animate({
+        color: "white"
+        }, "fast");
+    });
     // *** 3. Randomly select a word from the list of words in your words array.
     word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     // restart the function to pick a word if it tries to pick the same word twice in a row as long as there are other words available.
     if (word === prevWord && wordsArray.length > 1) {
         gameStart();
     }
-    console.log(word + " was the word selected from the array.")
+    //console.log(word + " was the word selected from the array.")
     remainingGuesses = 5;
     wordDisplay = ""; // Need to clear out wordDisplay so the string doesn't keep growing between rounds.
     missedGuesses = [];
@@ -43,16 +50,19 @@ function gameStart() {
 
     // *** 5. Write the blank word to the DOM.
     document.getElementById("wordDisplayID").innerHTML = wordDisplay;
+    pause = false;
 }
 
 gameStart(); //Initialize the game the first time the page is run.
 
 // 6. *** Listen for Key Events - these will be user guesses. Only accept it as a guess if the selection is a letter (no numbers, etc.)
 document.onkeyup = function(event) {
-    var key = event.key;
-    key = key.toUpperCase();
-    guessIndices = []; // clear out the guess indices every time a key is pressed.
-    
+    if (pause === false) {
+        var key = event.key;
+        key = key.toUpperCase();
+        guessIndices = []; // clear out the guess indices every time a key is pressed.
+    }
+
     if (validKeys.includes(key) && wordsArray.length !== 0) {
         var playerGuess = key;
 
@@ -90,8 +100,15 @@ document.onkeyup = function(event) {
         // ===== WIN SCENARIO =====
 
         if (check === word) {
+            //play audio
             var audioSuccess = new Audio('assets/audio/success_tune.mp3');
             audioSuccess.play();
+            //animate color to green
+            $(function(){
+                $("h1").animate({
+                color: "#409b39"
+                });
+            });
             wins++;
             document.getElementById("winsID").innerHTML = wins;
             wordsArray.splice( wordsArray.indexOf(word), 1 ); // Remove the current word from the words array since the player got it already.
@@ -102,7 +119,8 @@ document.onkeyup = function(event) {
             }
             // if they have not, start another round.
             else {
-                gameStart();
+                pause = true;
+                setTimeout(gameStart, 1200);
             }
         }
         // 10. If the player is out of guesses, increase their loss counter by one.
@@ -114,9 +132,15 @@ document.onkeyup = function(event) {
             document.getElementById("lossesID").innerHTML = losses;
             var audioFailure = new Audio('assets/audio/failure.mp3');
             audioFailure.play();
+            //animate color to red
+            $(function(){
+                $("h1").animate({
+                color: "rgb(255, 72, 72)"
+                });
+            });
             prevWord = word;
-            gameStart(); // Automatically start another round.
+            pause = true;
+            setTimeout(gameStart, 1200 ); // Automatically start another round.
         }
     }
 }
-// NOTE: May want to add a pause somehow between getting the right word and starting the next word. You don't get to see the full word.
