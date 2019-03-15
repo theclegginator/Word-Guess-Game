@@ -23,11 +23,13 @@ function replaceAt(string, index, replace) {
 
 // Function for starting the game (or starting a new word)
 function gameStart() {
-    //animate color back to white
-    $(function(){
-        $("h1").animate({
-        color: "white"
-        }, "fast");
+    //animate color back to white at start of each round
+    $( document ).ready(function() {
+        $(function(){
+            $("h1").animate({
+            color: "white"
+            }, "fast");
+        });
     });
     // *** 3. Randomly select a word from the list of words in your words array.
     word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
@@ -109,6 +111,7 @@ document.onkeyup = function(event) {
                 color: "#409b39"
                 });
             });
+
             wins++;
             document.getElementById("winsID").innerHTML = wins;
             wordsArray.splice( wordsArray.indexOf(word), 1 ); // Remove the current word from the words array since the player got it already.
