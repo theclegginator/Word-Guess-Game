@@ -37,11 +37,11 @@ p {
     margin-top: 10px;
 }
 
-.textHide {
+/* .textHide {
     visibility: hidden;
     clear: both;
     position: absolute;
-}
+} */
 
 @media only screen and (max-width: 600px) {
     #wordDisplayID {
@@ -75,9 +75,9 @@ p {
         padding-top: 10px;
     }
 
-    .textHide {
+    /* .textHide {
         visibility: visible;
         clear: none;
         position: relative;
-    }
+    } */
 }

@@ -1,10 +1,11 @@
 // 0. Initialize Global Variables.
-var wordsArray = ["PARTNER", "CATAWAMPUS", "HORSE", "LASSO", "SHOOTOUT"];
+var wordsArray = ["PARTNER", "CATAWAMPUS", "HORSE", "LASSO", "SHOOTOUT", "SPURS", "COWBOY", "ARMADILLO", "TUMBLEWEED", "LOCAMOTIVE", "SALOON", "WAGON", "SADDLE"];
 var validKeys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var missedGuesses = [];
 var wins = 0;
 var losses = 0;
 var wordDisplay = "";
+var prevWord = "";
 var guessIndices = [];
 var remainingGuesses = 5; // Consider making a ratio here. E.g. if the selected word is 12 letters long, maybe have more guesses.
 
@@ -23,6 +24,10 @@ var missedGuesses = [];
 function gameStart() {
     // *** 3. Randomly select a word from the list of words in your words array.
     word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    // restart the function to pick a word if it tries to pick the same word twice in a row as long as there are other words available.
+    if (word === prevWord && wordsArray.length > 1) {
+        gameStart();
+    }
     console.log(word + " was the word selected from the array.")
     remainingGuesses = 5;
     wordDisplay = ""; // Need to clear out wordDisplay so the string doesn't keep growing between rounds.
@@ -90,6 +95,7 @@ document.onkeyup = function(event) {
             wins++;
             document.getElementById("winsID").innerHTML = wins;
             wordsArray.splice( wordsArray.indexOf(word), 1 ); // Remove the current word from the words array since the player got it already.
+            prevWord = word;
             // check to see if the player has found all the words in the game
             if (wordsArray === undefined || wordsArray.length == 0) {
                 alert("BY GOLLY! You done found all the words in this here game. Yer' the downright champeen! Congratulations!")
@@ -108,10 +114,10 @@ document.onkeyup = function(event) {
             document.getElementById("lossesID").innerHTML = losses;
             var audioFailure = new Audio('assets/audio/failure.mp3');
             audioFailure.play();
+            prevWord = word;
             gameStart(); // Automatically start another round.
         }
     }
 }
 // NOTE: May want to add a pause somehow between getting the right word and starting the next word. You don't get to see the full word.
 // NOTE: Don't make the same word come up twice again.
-// NOTE: Add text box in media query to enable keyboard support on mobile.
