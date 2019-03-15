@@ -17,49 +17,50 @@
 </head>
 <body>
     <div class="container">
+        <input type="text" class="form-control text-center textHide" id="usr" placeholder="Tap here for keyboard on mobile!">
         <!-- Player Instructions -->
-        <div class="row" style="padding-top: 50px;">
-            <div class="col-md-6 text-center" style="border-top: 2px solid white; border-right: 2px solid white; border-left: 2px solid white; background-color: black; padding-top: 30px; border-radius: 10px 10px 0 0;">
+        <div class="row" id="top">
+            <div id="mobile" class="col-md-6 text-center" style="border-top: 2px solid white; border-right: 2px solid white; border-left: 2px solid white; background-color: black; padding-top: 30px; border-radius: 10px 10px 0 0;">
                 <p>Press any key to get started!</p>
             </div>
         </div>
         <!-- Blanks for Hangman word go here -->
         <div class="row">
-            <div class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
+            <div id="mobile" class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
                 <h1 id="wordDisplayID"></h1>
             </div>
         </div>
         <!-- Missed Guesses Section -->
         <div class="row">
-            <div class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
-                <h3>Missed Guesses:</h3>
+            <div id="mobile" class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
+                <h3 id="h3">Missed Guesses:</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
+            <div id="mobile" class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
                 <p id="missedGuessesID" style="font-size: 18pt;">-</p>
             </div>
         </div>
         <!-- Remaining Guesses Section -->
         <div class="row">
-            <div class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
-                <h3>Remaining Guesses:</h3>
+            <div id="mobile" class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
+                <h3 id="h3">Remaining Guesses:</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
+            <div id="mobile" class="col-md-6 text-center" style="background-color: black; border-right: 2px solid white; border-left: 2px solid white;">
                 <p id="remainingGuessesID" style="font-size: 18pt;"></p>
             </div>
         </div>
         <!-- Wins and Losses -->
         <div class="row">
-            <div class="col-md-3" style="background-color: black; border-radius: 0 0 0 10px; border-bottom: 2px solid white; border-left: 2px solid white;">
-                <h3 class="text-center" style="color: #409b39;">Wins:</h3>
+            <div class="col-md-3" id="winContainer">
+                <h3 id="h3" class="text-center" style="color: #409b39;">Wins:</h3>
                 <p id="winsID" class="text-center"  style="font-size: 18pt;"></p>
             </div>
 
-            <div class="col-md-3" style="background-color: black; padding-bottom: 30px; border-radius: 0 0 10px 0; border-bottom: 2px solid white; border-right: 2px solid white;">
-                <h3 class="text-center" style="color: rgb(255, 72, 72);">Losses:</h3>
+            <div class="col-md-3" id="loseContainer">
+                <h3 id="h3" class="text-center" style="color: rgb(255, 72, 72);">Losses:</h3>
                 <p id="lossesID" class="text-center" style="font-size: 18pt;"></p>
             </div>
         </div>
