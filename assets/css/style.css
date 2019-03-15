@@ -43,7 +43,7 @@ p {
     position: absolute;
 } */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
     #wordDisplayID {
         font-size: 14pt;
         padding-bottom: 20px;

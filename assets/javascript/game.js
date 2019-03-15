@@ -120,4 +120,3 @@ document.onkeyup = function(event) {
     }
 }
 // NOTE: May want to add a pause somehow between getting the right word and starting the next word. You don't get to see the full word.
-// NOTE: Don't make the same word come up twice again.
